@@ -1,4 +1,4 @@
-# SQL_DDL (Homework 1)
+#  HomeWork 1 SQL_DDL 
 Первая часть.
 
 Таблица employees
