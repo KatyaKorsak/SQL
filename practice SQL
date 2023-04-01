@@ -1,0 +1,144 @@
+SELECT * from public.family_members
+-- 1. вернуть колонки name и gender из таблицы family_members
+SELECT name, gender from public.family_members
+-- 2. необходимо вернуть колнки species и num_books_read
+SELECT species, num_books_read from public.family_members
+-- 3. необходимо вернуть записи, где gender = male из таблицы family_members
+SELECT * from public.family_members
+where gender = 'male'
+-- 4. необходимо вернуть записи со species = human
+SELECT * from public.family_members
+where species = 'human'
+-- 5. посмотреть все записи из таблицы null_testing
+SELECT * from public.null_testing
+-- 6. выбрать записи, где favorite_book будет null
+SELECT * from public.null_testing
+where favorite_book IS null
+-- 7. необходимо вернуть записи, где favorite_book не равно null из таблицы null_testing
+SELECT * from public.null_testing
+where favorite_book IS NOT null
+-- 8. вернуть записи, где num_books_read больше 170 из таблицы family_members
+SELECT * from public.family_members
+where num_books_read > 170
+-- 9. вернуть записи, где num_books_read больше или равно 180 из таблицы family_members.
+SELECT * from public.family_members
+where num_books_read >= 180
+-- 10. вернуть все версии Robot 2000, 2002 и 2004 из таблицы robots
+SELECT * from public.robots
+where name LIKE 'Robot 200%'
+-- 11. необходимо вернуть все версии Turbo Robot 2002, 2008, 2009
+SELECT * from public.robots
+where name LIKE 'Turbo Robot 200%'
+-- 12. вернуть все модели со словом Robot
+SELECT * from public.robots
+where name LIKE '%Robot%'
+-- 13. вернуть все версии роботов с 2000 до 2099 годов
+SELECT * from public.robots
+where name LIKE '%Robot 20%'
+-- 14. найти записи, где высота будет 25 см и вид будет - кот в таблице family_friends
+SELECT * from public.family_friends
+where height_cm = 25 AND species = 'cat'
+-- 15. вернуть записи, где рост больше или равен 55 см И вид - собака
+SELECT * from public.family_friends
+where height_cm >= 55 AND species = 'dog'
+-- 16. найти записи, удовлетворяющие условию: рост должен быть менее 60 см ИЛИ вид должен быть собака
+SELECT * from public.family_friends
+where height_cm < 60 OR species = 'dog'
+-- 17. необходимо вернуть записи, где рост больше 50 см ИЛИ вид - человек
+SELECT * from public.family_friends
+where height_cm > 50 OR species = 'human'
+-- 18. найти записи, у которых вид будет кот и человек
+SELECT * from public.family_friends
+where species IN ('cat','human')
+-- 19. найти записи, у которых вид НЕ будет кот и человек
+SELECT * from public.family_friends
+where species NOT IN ('cat','human')
+-- 20. необходимо вернуть записи, где вид - не собака и не кот
+SELECT * from public.family_friends
+where species NOT IN ('cat','dog')
+-- 21. узнать, какие есть параметры species в таблице family_friends.
+SELECT DISTINCT species  from public.family_friends
+-- 22. выполнить запрос, в котором вам необходимо узнать, какие уникальные параметры существуют в колонке height_cm.
+SELECT DISTINCT height_cm  from public.family_friends
+-- 23. узнать уникальное сочетание записей с species и gender, у которых height_cm <100.
+SELECT DISTINCT species, gender  from public.family_friends
+where height_cm < 100 
+-- 24. необходимо вернуть name и species записей, у которых gender - male
+SELECT DISTINCT species, name  from public.family_friends
+where gender = 'male'
+-- 25. отсортировать все записи из таблицы family_friends по имени
+SELECT * from public.family_friends
+ORDER BY name
+-- 26.  выполнить запрос, в котором вам необходимо отсортировать значения таблицы family_friends по росту.
+SELECT * from public.family_friends
+ORDER BY height_cm
+-- 27. необходимо отсортировать значения таблицы family_friends по росту по убыванию.
+SELECT * from public.family_friends
+ORDER BY height_cm DESC
+-- 28. надо вернуть первые две записи из таблицы family_friends
+SELECT * from public.family_friends
+LIMIT 2
+-- 29. вернуть две записи с самым низким значнием height_cm из таблицы family_friends.
+SELECT * from public.family_friends
+ORDER BY height_cm
+LIMIT 2
+-- 30. необходимо вернуть два самых больших значения колонки height_cm из таблицы family_friends.
+SELECT * from public.family_friends
+ORDER BY height_cm DESC
+LIMIT 2
+-- 31. узнать количество записей в таблице family_friends.
+SELECT COUNT (*) from public.family_friends
+-- 32. узнать, сколько в таблице family_friends записей cо значением human
+SELECT COUNT (*) from public.family_friends
+where species = 'human'
+-- 33. необходимо узнать количество записей из таблицы family_friends, у которых пол - male
+SELECT COUNT (*) from public.family_friends
+where gender = 'male'
+-- 34. вернуть сумму колонки num_books_read в таблице counting
+SELECT SUM (num_books_read) from public.counting
+-- 35. необходимо узнать сумму значений из колонки num_legs таблицы counting
+SELECT SUM (num_legs) from public.counting
+-- 36. узнать среднее количество ног в семье в таблице counting
+SELECT AVG (num_legs) from public.counting
+-- 37. необходимо узнать среднюю сумму значений из колонки num_books_read таблицы counting
+SELECT AVG (num_books_read) from public.counting
+-- 38. необходимо округлить среднюю сумму значений из колонки num_books_read таблицы counting до 4 знаков после запятой
+SELECT ROUND (AVG (num_books_read), 4) from public.counting
+-- 39. необходимо округлить среднюю сумму значений из колонки num_books_read таблицы counting до десятков
+SELECT ROUND (AVG (num_books_read), -1) from public.countin.
+-- 40. необходимо вернуть максимальное значение столбца num_legs в таблице counting
+SELECT MAX (num_legs) from public.counting
+-- 41. необходимо узнать максимальное значение из колонки num_books_read таблицы counting
+SELECT MAX (num_books_read) from public.counting
+-- 42.  вам необходимо узнать минимальное значение из колонки num_books_read таблицы counting
+SELECT MIN (num_books_read) from public.counting
+-- 43. узнать сколько в таблице котов, собак и людей в таблице family_friends
+SELECT COUNT(*), species from public.family_friends
+GROUP BY species
+-- 44. необходимо узнать количество особей мужского и женского пола в таблице family_friends
+SELECT COUNT(*), gender from public.family_friends
+GROUP BY gender 
+-- 45. необходимо определить, у представителей какого пола сумма ростов больше 325 см
+SELECT gender from public.family_friends
+GROUP BY gender
+HAVING SUM (height_cm) > 325
+-- 46. необходимо вернуть записи с максимальным значением num_books_read
+SELECT * from public.counting
+where num_books_read = (select MAX (num_books_read) from public.counting)
+-- 47. необходимо вернуть записи где дата рождения > 1989 в таблице celebs_born
+SELECT * from public.celebs_born
+where birthdate > '1989.01.01'
+-- 48. выполнить запрос, в котором вам необходимо сопоставить актера с ролью, которую он играл. 
+-- Для этого используйте таблицы character и character_actor
+SELECT public.character.name, public.character_actor.actor_name from public.character
+INNER JOIN public.character_actor 
+on public.character.id = public.character_actor.character_id
+-- 49. необходимо сопоставить актера с ролью, которую он играл. 
+-- Для этого используйте таблицы для первого INNER character и actor_relations. Для второго INNER - actor и actor_relations.
+SELECT public.character.name, public.actor.name
+from public.character
+INNER JOIN public.actor_relations
+on public.character.id = public.actor_relations.character_id
+INNER JOIN public.actor
+on public.actor_relations.actor_id = public.actor.id
+-- 50.   
